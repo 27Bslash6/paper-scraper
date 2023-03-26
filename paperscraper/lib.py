@@ -1,7 +1,6 @@
 import os
 import re
 import pypdf
-from pybtex.bibtex import BibTeXEngine
 from .headers import get_header
 from .utils import ThrottledClientSession
 import asyncio
@@ -148,7 +147,7 @@ async def a_search_papers(
     verbose=False,
     semantic_scholar_api_key=None,
     _paths=None,
-    _limit=100,
+    _limit=500,
     _offset=0,
     logger=None,
 ):
@@ -179,7 +178,7 @@ async def a_search_papers(
         paths = _paths
     ssheader = get_header()
     if semantic_scholar_api_key is not None:
-        ssheader['x-api-key'] = semantic_scholar_api_key
+        ssheader["x-api-key"] = semantic_scholar_api_key
     async with ThrottledClientSession(
         rate_limit=15 / 60, headers=ssheader
     ) as ss_session, ThrottledClientSession(

@@ -9,3 +9,4 @@ from .lib import (
     check_pdf,
     link_to_pdf,
 )
+from .logger import LOGGER
